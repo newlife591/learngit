@@ -7,10 +7,35 @@ import time
 
 #def open_explor(str="chrome")
 ## This programe have 5 Jobs ## 
+def open_explor(expname):
+    ##打开浏览器
+    pg.hotkey('win','r')
+    pg.PAUSE=2
+    pg.write(expname,interval=0.2,pause=0.2)
+    pg.press('enter',interval=1) 
+
+def open_new_url(url):
+    ##新窗口打开地址
+    pg.hotkey('ctrl','t')
+    pg.PAUSE=1
+    pg.getPointOnLine
+    pg.write(url)
+    pg.press('enter',interval=1)
+    pg.PAUSE = 1
+
+def max_windows():
+    ##最大化窗口
+    pg.keyDown('alt')
+    pg.keyDown('space')
+    pg.press('x',presses=1)
+    pg.keyUp('space')
+    pg.keyUp('alt')
+    pg.PAUSE = 1
+
 
 print('==== 打开浏览器 Press Ctrl-C to quit====')
 time_start=time.time()
-time.strftime("%Y-%m-%d %H:%M:%S",time_start)
+#time.strftime("%Y-%m-%d %H:%M:%S",time_start)
 exp_name=' chrome'    #浏览器名称  前面加一个空格
 login_dir='www.zhibugongzuo.com/login'
 job1_dir='www.zhibugongzuo.com'
@@ -35,61 +60,30 @@ job4_txt = '  We still need to work hard to win the peoples war on epidemic prev
 
 try:
     ## Run Chrome and SignIn
-    pg.hotkey('win','r')
-    pg.PAUSE=2
-    pg.write(exp_name,interval=0.2,pause=0.2)
-    pg.press('enter',interval=1) 
-    pg.write(login_dir,interval=0.01,pause=0.2)
-    pg.press('enter',interval=1)
-    pg.PAUSE=1
-    
-    pg.keyDown('alt')
-    pg.keyDown('space')
-    pg.press('x',presses=1)
-    pg.keyUp('space')
-    pg.keyUp('alt')
-    pg.PAUSE=1
-    #pg.moveTo(1142,328,0.1)
+    open_explor(exp_name)
+    open_new_url(login_dir)
+    max_windows()
     pg.click()
     
-    
-    
     ### Start JOB1: SIGNIN +5 point ##
-    pg.hotkey('ctrl','t')
-    pg.PAUSE=1
-    pg.getPointOnLine
-    pg.write(job1_dir)
-    pg.press('enter',interval=1)
+    open_new_url(job1_dir)
     pg.moveTo(1142,328,0.1)
     pg.click()
     pg.hotkey('ctrl','F4')
 
-
-    
     ## Start JOB2: Reading +10 and Discuss +5 point ##
     for job2_dir in job2_dirs:
-        pg.hotkey('ctrl', 't')
-        pg.PAUSE = 2
-        pg.getPointOnLine
-        pg.write(job2_dir)
-        pg.press('enter',interval=1)     
-        pg.PAUSE=1
+        open_new_url(job2_dir)
         pg.moveTo(304,193,0.0)
         pg.doubleClick()
         pg.write(job2_txt,interval=0.01,pause=0.2)
-        #pg.hotkey('ctrl','enter')
         pg.moveTo(1024,668,0.0)
         pg.doubleClick()
         pg.PAUSE=2
         pg.hotkey('ctrl','F4')
     
     ## Start JOB4: Publish +2 point ##
-    pg.hotkey('ctrl','t')
-    pg.PAUSE=1
-    pg.getPointOnLine
-    pg.write(job4_dir)
-    pg.press('enter',interval=1)
-    pg.PAUSE=1
+    open_new_url(job4_dir)
     pg.moveTo(430,302,0.1)
     pg.doubleClick()
     pg.write(job4_txt,interval=0.01,pause=0.2)
@@ -101,13 +95,7 @@ try:
     
     ## Start JOB3: Leaning Online +5 and Note  +2 point ##
     #time.sleep(1)
-    pg.hotkey('ctrl','t')
-    pg.PAUSE=1
-    pg.getPointOnLine
-    pg.write(job3_dir)
-    pg.press('enter',interval=1)
-    pg.PAUSE=1
-    
+    open_new_url(job3_dir)
     pg.moveTo(323,289,0.1)
     pg.click()
     pg.moveTo(463,289,0.1)
@@ -116,7 +104,7 @@ try:
     pg.moveTo(1051,415,0.1)
     pg.click()
     pg.PAUSE=2
-    
+    time_2=time.time()
     for i in range (job3_counter):
         pg.middleClick()
         pg.move(0,400,duration=1)
@@ -136,8 +124,9 @@ except KeyboardInterrupt:
     print('\n')
 
 time_end=time.time()
-time.strftime("%Y-%m-%d %H:%M:%S",time_end)
+#time.strftime("%Y-%m-%d %H:%M:%S",time_end)
 time_count=time_end-time_start
-print('time cost ',time_count,'s')
+read_count=time_end-time_2
+print('Time totle cost: %s,read_time cost: %s',time_count,read_count,'s')
 
 #return;
