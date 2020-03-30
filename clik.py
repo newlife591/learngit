@@ -32,101 +32,104 @@ def max_windows():
     pg.keyUp('alt')
     pg.PAUSE = 1
 
-
-print('==== 打开浏览器 Press Ctrl-C to quit====')
-time_start=time.time()
-#time.strftime("%Y-%m-%d %H:%M:%S",time_start)
-exp_name=' chrome'    #浏览器名称  前面加一个空格
-login_dir='www.zhibugongzuo.com/login'
-job1_dir='www.zhibugongzuo.com'
-job2_dirs = (
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=129724224566fc2714a48723d741bf67c3e677660d83e0eee367d1b07a099457&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=63dd774c8e4bebd7273c8eb4f2d83eeb97cae0777b94214e188ab3ed0a9c2d9e&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=049c3f45aa680543e9c146a87e70fb11afe76e58060018a8d08a31e814bb5720&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=9e5fe9f6124634f4f08a318aa87875fc1ad137e9d7aa51138777b633df753243&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=170d44e93738220dd0418590e17d4e9461e58532e238a278e26bdd617a1b12cd&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=e1db726bf9a732b409a11dfd5683a88e0061084e5a728c58713bd38881a9380f&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=2e8d404e204c88a1c774e9dc50d33826a3f4d2d63af58992300050fbc39a09d9&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=4d8058f0c6224c1e38b0f3340002589b09505e728b111d3f7d8a74fd935ad2a4&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=20bbd8f9f3f098455043b937e2e6bf62b6e2037929b118ae8fb139554f3f61a2&template=1',
-'  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=8fec49fc3a634bc87956816c0a04392d03d86c6f7af1479b37df4062e73b742d&template=1')
-job2_txt = '  good study! '
-job3_dir='  https://www.zhibugongzuo.com/study#/materialDetail/b30bbe82e55773d4cec1cce82fe339e6'
-job3_txt='  Where securities issuance and trading activities outside the territory of the Peoples Republic of China disrupt the market order within the territory of the Peoples Republic of China and damage the legitimate rights and interests of domestic investors, they shall be dealt with and investigated for legal responsibility in accordance with the relevant provisions of this law '
-job3_counter=20
-job4_dir='  https://www.zhibugongzuo.com/moments#/index'
-job4_txt = '  We still need to work hard to win the peoples war on epidemic prevention and control  the general war and the resistance war We have not fully understood the source and host of COVID-19'
-
-
-try:
-    ## Run Chrome and SignIn
-    open_explor(exp_name)
-    open_new_url(login_dir)
-    max_windows()
-    pg.click()
+if __name__ == "__main__":
     
-    ### Start JOB1: SIGNIN +5 point ##
-    open_new_url(job1_dir)
-    pg.moveTo(1142,328,0.1)
-    pg.click()
-    pg.hotkey('ctrl','F4')
+    print('==== 打开浏览器 Press Ctrl-C to quit====')
+    time_start=time.time()
+    #time.strftime("%Y-%m-%d %H:%M:%S",time_start)
+    exp_name=' chrome'    #浏览器名称  前面加一个空格
+    login_dir='www.zhibugongzuo.com/login' 
+    job1_dir='www.zhibugongzuo.com'
+    job2_dirs = (
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=129724224566fc2714a48723d741bf67c3e677660d83e0eee367d1b07a099457&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=63dd774c8e4bebd7273c8eb4f2d83eeb97cae0777b94214e188ab3ed0a9c2d9e&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=049c3f45aa680543e9c146a87e70fb11afe76e58060018a8d08a31e814bb5720&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=9e5fe9f6124634f4f08a318aa87875fc1ad137e9d7aa51138777b633df753243&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=170d44e93738220dd0418590e17d4e9461e58532e238a278e26bdd617a1b12cd&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=e1db726bf9a732b409a11dfd5683a88e0061084e5a728c58713bd38881a9380f&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=2e8d404e204c88a1c774e9dc50d33826a3f4d2d63af58992300050fbc39a09d9&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=4d8058f0c6224c1e38b0f3340002589b09505e728b111d3f7d8a74fd935ad2a4&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=20bbd8f9f3f098455043b937e2e6bf62b6e2037929b118ae8fb139554f3f61a2&template=1',
+    '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=8fec49fc3a634bc87956816c0a04392d03d86c6f7af1479b37df4062e73b742d&template=1')
+    job2_txt = '  good study! '
+    job3_dir='  https://www.zhibugongzuo.com/study#/materialDetail/b30bbe82e55773d4cec1cce82fe339e6'
+    job3_txt='  Where securities issuance and trading activities outside the territory of the Peoples Republic of China disrupt the market order within the territory of the Peoples Republic of China and damage the legitimate rights and interests of domestic investors, they shall be dealt with and investigated for legal responsibility in accordance with the relevant provisions of this law '
+    job3_counter=20
+    job4_dir='  https://www.zhibugongzuo.com/moments#/index'
+    job4_txt = '  We still need to work hard to win the peoples war on epidemic prevention and control  the general war and the resistance war We have not fully understood the source and host of COVID-19'
 
-    ## Start JOB2: Reading +10 and Discuss +5 point ##
-    for job2_dir in job2_dirs:
-        open_new_url(job2_dir)
-        pg.moveTo(304,193,0.0)
+
+    try:
+        ## Run Chrome and SignIn
+        open_explor(exp_name)
+        open_new_url(login_dir)
+        max_windows()
+        pg.click()
+        
+        ### Start JOB1: SIGNIN +5 point ##
+        open_new_url(job1_dir)
+        pg.moveTo(1142,328,0.1)
+        pg.click()
+        pg.click()
+        pg.click()
+        pg.hotkey('ctrl','F4')
+
+        ## Start JOB2: Reading +10 and Discuss +5 point ##
+        for job2_dir in job2_dirs:
+            open_new_url(job2_dir)
+            pg.moveTo(304,193,0.0)
+            pg.doubleClick()
+            pg.write(job2_txt,interval=0.01,pause=0.2)
+            pg.moveTo(1024,668,0.0)
+            pg.doubleClick()
+            pg.PAUSE=2
+            pg.hotkey('ctrl','F4')
+        
+        ## Start JOB4: Publish +2 point ##
+        open_new_url(job4_dir)
+        pg.moveTo(430,302,0.1)
         pg.doubleClick()
-        pg.write(job2_txt,interval=0.01,pause=0.2)
-        pg.moveTo(1024,668,0.0)
-        pg.doubleClick()
+        pg.write(job4_txt,interval=0.01,pause=0.2)
+        pg.moveTo(935,392,0.1)
+        pg.click()
         pg.PAUSE=2
         pg.hotkey('ctrl','F4')
-    
-    ## Start JOB4: Publish +2 point ##
-    open_new_url(job4_dir)
-    pg.moveTo(430,302,0.1)
-    pg.doubleClick()
-    pg.write(job4_txt,interval=0.01,pause=0.2)
-    pg.moveTo(935,392,0.1)
-    pg.click()
-    pg.PAUSE=2
-    pg.hotkey('ctrl','F4')
-    
-    
-    ## Start JOB3: Leaning Online +5 and Note  +2 point ##
-    #time.sleep(1)
-    open_new_url(job3_dir)
-    pg.moveTo(323,289,0.1)
-    pg.click()
-    pg.moveTo(463,289,0.1)
-    pg.click()
-    pg.write(job4_txt,interval=0.01,pause=0.2)
-    pg.moveTo(1051,415,0.1)
-    pg.click()
-    pg.PAUSE=2
-    time_2=time.time()
-    for i in range (job3_counter):
-        pg.middleClick()
-        pg.move(0,400,duration=1)
-        pg.middleClick()
-        pg.middleClick()
-        pg.move(0,-400,duration=1)
-        pg.middleClick()
+        
+        
+        ## Start JOB3: Leaning Online +5 and Note  +2 point ##
         #time.sleep(1)
-        job3_counter-=1
-    pg.hotkey('ctrl','F4')
-    #pg.hotkey('ctrl','F4')
+        open_new_url(job3_dir)
+        pg.moveTo(323,289,0.1)
+        pg.click()
+        pg.moveTo(463,289,0.1)
+        pg.click()
+        pg.write(job4_txt,interval=0.01,pause=0.2)
+        pg.moveTo(1051,415,0.1)
+        pg.click()
+        pg.PAUSE=2
+        time_2=time.time()
+        for i in range (job3_counter):
+            pg.middleClick()
+            pg.move(0,400,duration=1)
+            pg.middleClick()
+            pg.middleClick()
+            pg.move(0,-400,duration=1)
+            pg.middleClick()
+            #time.sleep(1)
+            job3_counter-=1
+        pg.hotkey('ctrl','F4')
+        #pg.hotkey('ctrl','F4')
 
-    ## Start JOB5: Practise +6 point ##
-    pg.hotkey('alt','F4')
+        ## Start JOB5: Practise +6 point ##
+        pg.hotkey('alt','F4')
 
-except KeyboardInterrupt:
-    print('\n')
+    except KeyboardInterrupt:
+        print('\n')
 
-time_end=time.time()
-#time.strftime("%Y-%m-%d %H:%M:%S",time_end)
-time_count=time_end-time_start
-read_count=time_end-time_2
-print('Time totle cost: %s,read_time cost: %s',time_count,read_count,'s')
+    time_end=time.time()
+    #time.strftime("%Y-%m-%d %H:%M:%S",time_end)
+    time_count=time_end-time_start
+    read_count=time_end-time_2
+    print('Time totle cost:',time_count,'s /n.Reading cost:',read_count,'s')
 
-#return;
+    #return;
