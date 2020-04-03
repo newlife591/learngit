@@ -1,3 +1,11 @@
+###图片处理模块，实现图片处理的以下功能：
+##  1 去除图片边框
+##  2 干扰线降噪
+##  3 点降噪
+##  4 自适应阀值二值化
+##  5 
+##
+##
 from PIL import Image
 from pytesseract import *
 from fnmatch import fnmatch
@@ -7,8 +15,65 @@ import cv2
 import time
 import os
 
+def _get_img_grey_prc(filedir,img_name):
+  '''灰度处理图片 在easy_img文件夹（使用PIL）
+  '''
+  filename = './easy_img/' + img_name.split('.')[0] + '-grey.jpg'
+  img_name = filedir + '/' + img_name
+  img=Image.open(img_name)
+  img = img.convert('L')         # P模式转换为L模式(灰度模式默认阈值127)
+  count=160                  # 设定阈值
+  table=[]
+  for i in range(256):
+          if i<count:
+              table.append(0)
+          else:
+              table.append(1)
+      
+  img=img.point(table,'1')
+  img.save(filename)   # 保存处理后的验证码
+  return img
 
 
+
+def _get_dynamic_binary_image(filedir, img_name):
+  '''
+  自适应阀值二值化 （使用CV2）
+  '''
+
+  
+  filename = './out_img/' + img_name.split('.')[0] + '-binary.jpg'
+  img_name = filedir + '/' + img_name
+  print('.....' + img_name)
+  im = cv2.imread(img_name)
+  im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+
+  th2= cv2.adaptiveThreshold(
+      im, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 1)
+  
+  cv2.imwrite(filename, th2)  
+  
+
+  return th2 #使用哪个文件，返回哪个文件名 
+
+
+def _get_static_binary_image(img, threshold=140):
+  '''
+  手动二值化
+  '''
+
+  img = Image.open(img)
+  img = img.convert('L')
+  pixdata = img.load()
+  w, h = img.size
+  for y in range(h):
+    for x in range(w):
+      if pixdata[x, y] < threshold:
+        pixdata[x, y] = 0
+      else:
+        pixdata[x, y] = 255
+
+  return img
 
 
 
@@ -157,38 +222,7 @@ def interference_point(img,img_name, x = 0, y = 0):
     cv2.imwrite(filename,img)
     return img
 
-def _get_dynamic_binary_image(filedir, img_name):
-  '''
-  自适应阀值二值化
-  '''
 
-  filename =   './out_img/' + img_name.split('.')[0] + '-binary.jpg'
-  img_name = filedir + '/' + img_name
-  print('.....' + img_name)
-  im = cv2.imread(img_name)
-  im = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
-
-  th1 = cv2.adaptiveThreshold(im, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 1)
-  cv2.imwrite(filename,th1)
-  return th1
-
-def _get_static_binary_image(img, threshold = 140):
-  '''
-  手动二值化
-  '''
-
-  img = Image.open(img)
-  img = img.convert('L')
-  pixdata = img.load()
-  w, h = img.size
-  for y in range(h):
-    for x in range(w):
-      if pixdata[x, y] < threshold:
-        pixdata[x, y] = 0
-      else:
-        pixdata[x, y] = 255
-
-  return img
 
 
 def cfs(im,x_fd,y_fd):
@@ -292,13 +326,16 @@ def cutting_img(im,im_position,img,xoffset = 1,yoffset = 1):
 
 
 
-def main():
+def img_main():
   filedir = './easy_img'
+  
+  img=_get_img_grey_prc(filedir,'capt.png') 
 
   for file in os.listdir(filedir):
-    if fnmatch(file, '*.png'):
+    if fnmatch(file, 'capt-grey.jpg'):
       img_name = file
 
+      
       # 自适应阈值二值化
       im = _get_dynamic_binary_image(filedir, img_name)
 
@@ -351,6 +388,7 @@ def main():
           pass
       print('切图：%s' % cutting_img_num)
       print('识别为：%s' % str_img)
-          
+
+        
 if __name__ == '__main__':
-  main()
+  img_main()
