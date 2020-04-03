@@ -30,7 +30,7 @@ def max_windows():
     pg.press('x',presses=1)
     pg.keyUp('space')
     pg.keyUp('alt')
-    pg.PAUSE = 1
+    pg.PAUSE = 0.1
 
 if __name__ == "__main__":
     
@@ -61,11 +61,16 @@ if __name__ == "__main__":
 
     try:
         ## Run Chrome and SignIn
-        open_explor(exp_name)
-        open_new_url(login_dir)
-        max_windows()
-        pg.click()
         
+        open_explor(exp_name)
+        
+        #open_new_url(login_dir)
+        max_windows()
+        #pg.click()
+        pg.write(login_dir)
+        pg.press('enter')
+        time.sleep(10)
+
         ### Start JOB1: SIGNIN +5 point ##
         open_new_url(job1_dir)
         pg.moveTo(1142,328,0.1)
@@ -121,15 +126,18 @@ if __name__ == "__main__":
         #pg.hotkey('ctrl','F4')
 
         ## Start JOB5: Practise +6 point ##
+        time_end=time.time()
         pg.hotkey('alt','F4')
-
     except KeyboardInterrupt:
         print('\n')
 
-    time_end=time.time()
     #time.strftime("%Y-%m-%d %H:%M:%S",time_end)
     time_count=time_end-time_start
     read_count=time_end-time_2
     print('Time totle cost:',time_count,'s /n.Reading cost:',read_count,'s')
 
     #return;
+
+
+
+
