@@ -1,6 +1,7 @@
 ##!/usr/bin/python   
 # open chrome in windows 
 import pyautogui as pg
+import pyperclip as pc
 import sys
 import time
 
@@ -51,12 +52,12 @@ if __name__ == "__main__":
     '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=4d8058f0c6224c1e38b0f3340002589b09505e728b111d3f7d8a74fd935ad2a4&template=1',
     '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=20bbd8f9f3f098455043b937e2e6bf62b6e2037929b118ae8fb139554f3f61a2&template=1',
     '  https://www.zhibugongzuo.com/news#/workinfodetail?act_id=8fec49fc3a634bc87956816c0a04392d03d86c6f7af1479b37df4062e73b742d&template=1')
-    job2_txt = '  good study! '
+    job2_txt = '学习'
     job3_dir='  https://www.zhibugongzuo.com/study#/materialDetail/b30bbe82e55773d4cec1cce82fe339e6'
-    job3_txt='  Where securities issuance and trading activities outside the territory of the Peoples Republic of China disrupt the market order within the territory of the Peoples Republic of China and damage the legitimate rights and interests of domestic investors, they shall be dealt with and investigated for legal responsibility in accordance with the relevant provisions of this law '
+    job3_txt ='经过全国上下和广大人民群众艰苦努力，疫情防控取得阶段性重要成效，经济社会秩序加快恢复，彰显了中国共产党领导和中国特色社会主义制度的显著优势'
     job3_counter=20
     job4_dir='  https://www.zhibugongzuo.com/moments#/index'
-    job4_txt = '  We still need to work hard to win the peoples war on epidemic prevention and control  the general war and the resistance war We have not fully understood the source and host of COVID-19'
+    job4_txt = '经过全国上下和广大人民群众艰苦努力，疫情防控取得阶段性重要成效，经济社会秩序加快恢复，彰显了中国共产党领导和中国特色社会主义制度的显著优势'
 
 
     try:
@@ -84,7 +85,10 @@ if __name__ == "__main__":
             open_new_url(job2_dir)
             pg.moveTo(304,193,0.0)
             pg.doubleClick()
-            pg.write(job2_txt,interval=0.01,pause=0.2)
+            #pg.write(job2_txt,interval=0.01,pause=0.2)
+            pc.copy(job2_txt)
+            pg.hotkey('ctrl','v')
+            #pc.paste()
             pg.moveTo(1024,668,0.0)
             pg.doubleClick()
             pg.PAUSE=2
@@ -94,7 +98,10 @@ if __name__ == "__main__":
         open_new_url(job4_dir)
         pg.moveTo(430,302,0.1)
         pg.doubleClick()
-        pg.write(job4_txt,interval=0.01,pause=0.2)
+        #pg.write(job4_txt,interval=0.01,pause=0.2)
+        pc.copy(job4_txt)
+        pg.hotkey('ctrl','v')
+        #pc.paste()
         pg.moveTo(935,392,0.1)
         pg.click()
         pg.PAUSE=2
@@ -108,7 +115,10 @@ if __name__ == "__main__":
         pg.click()
         pg.moveTo(463,289,0.1)
         pg.click()
-        pg.write(job4_txt,interval=0.01,pause=0.2)
+        #pg.write(job4_txt,interval=0.01,pause=0.2)
+        pc.copy(job3_txt)
+        pg.hotkey('ctrl','v')
+        #pc.paste()
         pg.moveTo(1051,415,0.1)
         pg.click()
         pg.PAUSE=2
@@ -127,6 +137,7 @@ if __name__ == "__main__":
 
         ## Start JOB5: Practise +6 point ##
         time_end=time.time()
+        
         pg.hotkey('alt','F4')
     except KeyboardInterrupt:
         print('\n')
