@@ -70,7 +70,7 @@ if __name__ == "__main__":
         #pg.click()
         pg.write(login_dir)
         pg.press('enter')
-        time.sleep(10)
+        time.sleep(20)
 
         ### Start JOB1: SIGNIN +5 point ##
         open_new_url(job1_dir)
